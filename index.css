@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #000000;
+    --bg-elevated: #0a0a0a;
+    --surface: #111111;
+    --surface-2: #1a1a1a;
+    --border: #1f1f1f;
+    --text: #ffffff;
+    --text-muted: #a1a1a1;
+    --text-dim: #6b6b6b;
+    --accent: #00a2ff;
+    --accent-bright: #2dbfff;
+    --accent-glow: rgba(0, 162, 255, 0.35);
+  }
+
+  .light {
+    --bg: #ffffff;
+    --bg-elevated: #f7f7f8;
+    --surface: #ffffff;
+    --surface-2: #f0f0f2;
+    --border: #e5e5e7;
+    --text: #000000;
+    --text-muted: #555555;
+    --text-dim: #8e8e93;
+    --accent: #0077cc;
+    --accent-bright: #0096ff;
+    --accent-glow: rgba(0, 119, 204, 0.2);
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+}
+
+@layer components {
+  .surface {
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .surface-2 {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+  }
+  .text-muted {
+    color: var(--text-muted);
+  }
+  .text-dim {
+    color: var(--text-dim);
+  }
+  .accent-text {
+    color: var(--accent-bright);
+  }
+  .accent-bg {
+    background: var(--accent);
+  }
+  .accent-border {
+    border-color: var(--accent);
+  }
+  .glass {
+    background: color-mix(in srgb, var(--surface) 75%, transparent);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .btn-primary:hover {
+    background: var(--accent-bright);
+    box-shadow: 0 0 24px var(--accent-glow);
+  }
+  .btn-primary:active {
+    transform: scale(0.97);
+  }
+  .input-field {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 0.875rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+  .animate-fade-up {
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .animate-scale-in {
+    animation: scaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  .animate-slide-in {
+    animation: slideIn 0.4s ease forwards;
+  }
+  .animate-pulse-glow {
+    animation: pulseGlow 2.5s ease-in-out infinite;
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 20%, transparent), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s infinite;
+  }
+  .stagger > * {
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .stagger > *:nth-child(1) { animation-delay: 0.05s; }
+  .stagger > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger > *:nth-child(3) { animation-delay: 0.15s; }
+  .stagger > *:nth-child(4) { animation-delay: 0.2s; }
+  .stagger > *:nth-child(5) { animation-delay: 0.25s; }
+  .stagger > *:nth-child(6) { animation-delay: 0.3s; }
+  .stagger > *:nth-child(7) { animation-delay: 0.35s; }
+  .stagger > *:nth-child(8) { animation-delay: 0.4s; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+  50% { box-shadow: 0 0 40px var(--accent-glow); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
